@@ -11,12 +11,8 @@ locals {
   /* } */
 
   vars = {
-    id             = var.nuon_id
-    region         = var.region
-    min_size       = var.min_size
-    max_size       = var.max_size
-    desired_size   = var.desired_size
-    instance_types = ["t3a.medium"]
+    id     = var.nuon_id
+    region = var.region
   }
 }
 
@@ -45,6 +41,18 @@ variable "region" {
   }
 }
 
+variable "cluster_name" {
+  type        = string
+  description = "The name of the EKS cluster. Will use the install ID by default."
+  default     = ""
+}
+
+variable "cluster_version" {
+  type        = string
+  description = "The Kubernetes version to use for the EKS cluster."
+  default     = "~> 19.17.2"
+}
+
 variable "min_size" {
   type        = number
   default     = 2
@@ -63,9 +71,21 @@ variable "desired_size" {
   description = "The desired number of nodes in the managed node group."
 }
 
+variable "instance_types" {
+  type        = list(string)
+  default     = ["t3a.medium"]
+  description = "The EC2 instance types to use for the EKS cluster."
+}
+
 variable "external_access_role_arns" {
   type        = list(string)
   description = "Roles for external access to the cluster."
+}
+
+variable "admin_access_role_arn" {
+  description = "Optional role to provide admin access to the cluster."
+  type        = string
+  default     = ""
 }
 
 variable "waypoint_odr_namespace" {
@@ -85,6 +105,6 @@ variable "internal_root_domain" {
 }
 
 variable "public_root_domain" {
-  type = string
+  type        = string
   description = "public root domain."
 }

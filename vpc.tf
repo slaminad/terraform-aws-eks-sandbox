@@ -13,6 +13,7 @@ locals {
       private_subnets = ["10.128.128.0/24", "10.128.129.0/24", "10.128.130.0/24"]
     }
   }
+  region = local.vars.region
 }
 
 
