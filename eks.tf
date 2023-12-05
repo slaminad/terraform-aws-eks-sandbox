@@ -33,8 +33,8 @@ locals {
   }
   # only add admin access role if variable was set
   aws_auth_roles = (var.admin_access_role_arn == "" ?
-    concat(local.aws_auth_role_install_access, local.aws_auth_role_terraform_access) :
-    concat(local.aws_auth_role_install_access, local.aws_auth_role_terraform_access, local.aws_auth_role_admin_access)
+    [local.aws_auth_role_install_access, local.aws_auth_role_terraform_access] :
+    [local.aws_auth_role_install_access, local.aws_auth_role_terraform_access, local.aws_auth_role_admin_access]
   )
 }
 
