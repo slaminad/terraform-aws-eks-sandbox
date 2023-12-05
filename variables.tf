@@ -50,7 +50,7 @@ variable "cluster_name" {
 variable "cluster_version" {
   type        = string
   description = "The Kubernetes version to use for the EKS cluster."
-  default     = "~> 19.17.2"
+  default     = "1.28"
 }
 
 variable "min_size" {
