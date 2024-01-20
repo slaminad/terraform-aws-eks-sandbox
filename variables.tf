@@ -1,5 +1,4 @@
 locals {
-
   tags = merge({ nuon_id = var.nuon_id }, var.tags)
 
   /* external_dns = { */
@@ -57,24 +56,6 @@ variable "min_size" {
   type        = number
   default     = 2
   description = "The minimum number of nodes in the managed node group."
-}
-
-variable "max_size" {
-  type        = number
-  default     = 3
-  description = "The maximum number of nodes in the managed node group."
-}
-
-variable "desired_size" {
-  type        = number
-  default     = 2
-  description = "The desired number of nodes in the managed node group."
-}
-
-variable "instance_types" {
-  type        = list(string)
-  default     = ["t3a.medium"]
-  description = "The EC2 instance types to use for the EKS cluster."
 }
 
 variable "external_access_role_arns" {

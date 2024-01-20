@@ -34,6 +34,7 @@ output "vpc" {
 
     public_subnet_cidr_blocks = module.vpc.public_subnets_cidr_blocks
     public_subnet_ids         = module.vpc.public_subnets
+    default_security_group_id = module.vpc.default_security_group_id
   }
 }
 
