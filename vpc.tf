@@ -18,12 +18,12 @@ locals {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 3.0"
+  version = "~> 5.5"
 
   name = local.vars.id
   cidr = local.networks["sandbox"]["cidr"]
 
-  azs             = [for az in ["a", "b", "c"] : "${local.region}${az}"]
+  azs             = [for az in ["a", "b", "c"] : "${local.vars.region}${az}"]
   private_subnets = local.networks["sandbox"]["private_subnets"]
   public_subnets  = local.networks["sandbox"]["public_subnets"]
 
