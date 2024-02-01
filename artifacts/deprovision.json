@@ -11,6 +11,7 @@
         "ec2:DeleteRouteTable",
         "ec2:DeleteSubnet",
         "ec2:DeleteTags",
+        "ec2:DeleteNetworkAclEntry",
         "ec2:DescribeAddresses",
         "ec2:DescribeInternetGateways",
         "ec2:DescribeLaunchTemplateVersions",
