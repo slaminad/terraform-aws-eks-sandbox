@@ -15,6 +15,7 @@
                 "ec2:DescribeSecurityGroups",
                 "ec2:CreateInternetGateway",
                 "ec2:CreateNatGateway",
+                "ec2:CreateNetworkAclEntry",
                 "ec2:CreateRoute",
                 "ec2:CreateRouteTable",
                 "ec2:CreateSecurityGroup",
