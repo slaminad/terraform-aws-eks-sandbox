@@ -27,7 +27,7 @@ module "vpc" {
   name = local.vars.id
   cidr = local.networks["sandbox"]["cidr"]
 
-  azs             = data.aws_availability_zones.available.names
+  azs             = data.aws_availability_zones.available.zone_ids
   private_subnets = local.networks["sandbox"]["private_subnets"]
   public_subnets  = local.networks["sandbox"]["public_subnets"]
 
