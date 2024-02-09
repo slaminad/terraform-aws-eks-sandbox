@@ -16,6 +16,10 @@ locals {
   region = local.vars.region
 }
 
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 5.5"
@@ -23,7 +27,7 @@ module "vpc" {
   name = local.vars.id
   cidr = local.networks["sandbox"]["cidr"]
 
-  azs             = [for az in ["a", "b", "c"] : "${local.vars.region}${az}"]
+  azs             = data.aws_availability_zones.available.names
   private_subnets = local.networks["sandbox"]["private_subnets"]
   public_subnets  = local.networks["sandbox"]["public_subnets"]
 
