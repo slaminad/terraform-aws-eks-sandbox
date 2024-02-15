@@ -57,7 +57,7 @@
                 "eks:DescribeNodegroup",
                 "eks:ListAddons",
                 "eks:CreateAddon",
-                "eks:eks:UpdateNodegroupVersion",
+                "eks:UpdateNodegroupVersion",
                 "eks:DescribeAddon",
                 "eks:DescribeAddonConfiguration",
                 "eks:DescribeAddonVersions",
