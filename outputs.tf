@@ -45,7 +45,6 @@ output "account" {
   }
 }
 
-
 output "ecr" {
   value = {
     repository_url  = module.ecr.repository_url
