@@ -61,14 +61,14 @@ variable "desired_size" {
 
 variable "max_size" {
   type        = number
-  default     =5
+  default     = 5
   description = "The maximum number of nodes in the managed node group."
 }
 
-variable "instance_types" {
-  type        = list(string)
-  default     = ["t3a.medium"]
-  description = "The EC2 instance types to use for the EKS cluster."
+variable "default_instance_type" {
+  type        = string
+  default     = "t3a.medium"
+  description = "The EC2 instance types to use for the EKS cluster's default node group."
 }
 
 variable "external_access_role_arns" {

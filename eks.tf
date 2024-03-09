@@ -2,7 +2,7 @@ locals {
   cluster_name    = (var.cluster_name != "" ? var.cluster_name : var.nuon_id)
   cluster_version = var.cluster_version
 
-  instance_types = var.instance_types
+  instance_types = [var.default_instance_type]
   min_size       = var.min_size
   max_size       = var.max_size
   desired_size   = var.desired_size
@@ -88,7 +88,7 @@ module "eks" {
 
   eks_managed_node_groups = {
     default = {
-      instance_types = local.instance_types
+      instance_types = [var.default_instance_type]
       min_size       = local.min_size
       max_size       = local.max_size
       desired_size   = local.desired_size
