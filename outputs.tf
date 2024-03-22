@@ -1,6 +1,6 @@
 output "runner" {
   value = {
-    odr_iam_role_arn     = module.odr_iam_role.iam_role_arn
+    odr_iam_role_arn = module.odr_iam_role.iam_role_arn
   }
 }
 
@@ -49,7 +49,7 @@ output "ecr" {
   value = {
     repository_url  = module.ecr.repository_url
     repository_arn  = module.ecr.repository_arn
-    repository_name = local.vars.id
+    repository_name = var.nuon_id
     registry_id     = module.ecr.repository_registry_id
     registry_url    = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${var.region}.amazonaws.com"
   }

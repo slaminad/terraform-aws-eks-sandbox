@@ -7,7 +7,7 @@ data "aws_iam_policy_document" "odr" {
 }
 
 resource "aws_iam_policy" "odr" {
-  name   = "odr-${local.vars.id}"
+  name   = "odr-${var.nuon_id}"
   policy = data.aws_iam_policy_document.odr.json
 }
 
@@ -20,11 +20,11 @@ module "odr_iam_role" {
   version     = ">= 5.1.0"
   create_role = true
 
-  role_name = "odr-${local.vars.id}"
+  role_name = "odr-${var.nuon_id}"
   role_path = "/nuon/"
 
   cluster_service_accounts = {
-    (local.vars.id) = ["${var.waypoint_odr_namespace}:${var.waypoint_odr_service_account_name}"]
+    (var.nuon_id) = ["${var.waypoint_odr_namespace}:${var.waypoint_odr_service_account_name}"]
   }
 
   role_policy_arns = {

@@ -13,7 +13,7 @@ locals {
       private_subnets = ["10.128.128.0/24", "10.128.129.0/24", "10.128.130.0/24"]
     }
   }
-  region = local.vars.region
+  region = local.install_region
 }
 
 data "aws_availability_zones" "available" {
@@ -24,26 +24,26 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 5.5"
 
-  name = local.vars.id
+  name = var.nuon_id
   cidr = local.networks["sandbox"]["cidr"]
 
   azs             = data.aws_availability_zones.available.zone_ids
   private_subnets = local.networks["sandbox"]["private_subnets"]
   public_subnets  = local.networks["sandbox"]["public_subnets"]
 
-  enable_nat_gateway   = true
-  single_nat_gateway   = true
-  enable_dns_hostnames = true
+  enable_nat_gateway           = true
+  single_nat_gateway           = true
+  enable_dns_hostnames         = true
   create_database_subnet_group = true
   #create_elasticache_subnet_group = true
 
   public_subnet_tags = {
-    "kubernetes.io/cluster/${local.vars.id}" = "shared"
-    "kubernetes.io/role/elb"                 = 1
+    "kubernetes.io/cluster/${var.nuon_id}" = "shared"
+    "kubernetes.io/role/elb"               = 1
   }
 
   private_subnet_tags = {
-    "kubernetes.io/cluster/${local.vars.id}" = "shared"
-    "kubernetes.io/role/internal-elb"        = 1
+    "kubernetes.io/cluster/${var.nuon_id}" = "shared"
+    "kubernetes.io/role/internal-elb"      = 1
   }
 }

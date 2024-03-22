@@ -9,7 +9,7 @@ module "ecr" {
   create_lifecycle_policy                   = false
   create_registry_replication_configuration = false
 
-  repository_name                 = local.vars.id
+  repository_name                 = var.nuon_id
   repository_image_tag_mutability = "MUTABLE"
   repository_encryption_type      = "KMS"
   repository_image_scan_on_push   = false
