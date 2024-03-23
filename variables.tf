@@ -59,6 +59,7 @@ variable "admin_access_role_arn" {
 variable "additional_tags" {
   type        = map(any)
   description = "Extra tags to append to the default tags that will be added to install resources."
+  default     = {}
 }
 
 # Automatically set by Nuon when provisioned.
