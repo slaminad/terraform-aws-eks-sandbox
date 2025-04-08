@@ -56,6 +56,47 @@ variable "additional_tags" {
   default     = {}
 }
 
+# VPC configuration
+
+variable "cidr_block" {
+  type        = string
+  description = "CIDR block of IPs to use for the VPC."
+  default     = "10.128.0.0/16"
+}
+
+# each network block is configured by taking a /16 and dividing by 2
+# this leaves 2 /17's
+# public subnets are taken from the first /17
+# private_subnets are taken from the second half
+
+# public subnets do not need to be as big so we evenly break down a /24
+# 10.128.0.192/26 finishes  the /24 segementation
+# you can see the math for this /16 here https://www.davidc.net/sites/default/subnets/subnets.html?network=10.128.0.0&mask=16&division=23.ff3100
+
+variable "public_subnets" {
+  type        = list(string)
+  description = "List of IP ranges for public subnets."
+  default     = ["10.128.0.0/26", "10.128.0.64/26", "10.128.0.128/26"]
+}
+
+variable "private_subnets" {
+  type        = list(string)
+  description = "List of IP ranges for private subnets."
+  default     = ["10.128.128.0/24", "10.128.129.0/24", "10.128.130.0/24"]
+}
+
+variable "number_azs" {
+  type        = number
+  description = "Number of AZs to use for a region. Will auto-discover from available."
+  default     = 3
+}
+
+variable "use_single_nat_gateway" {
+  type        = bool
+  description = "Use a single NAT gateway. Otherwise, create one per AZ."
+  default     = true
+}
+
 # Automatically set by Nuon when provisioned.
 
 variable "nuon_id" {
